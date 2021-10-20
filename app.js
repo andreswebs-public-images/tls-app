@@ -2,7 +2,6 @@ const https = require('https');
 const fs = require('fs');
 const express = require('express');
 
-
 const port = 8443;
 
 const certDir = '/cert';
@@ -20,7 +19,5 @@ app.use((req, res) => {
   res.writeHead(200);
   res.end('ok\n');
 });
-
-app.listen(port);
 
 https.createServer(options, app).listen(port);
