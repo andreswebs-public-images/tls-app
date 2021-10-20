@@ -1,6 +1,6 @@
 FROM node:16-buster-slim
 
-COPY ./* .
+COPY ./* ./
 
 ENV NODE_ENV=production
 
