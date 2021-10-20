@@ -1,0 +1,42 @@
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: tls-app
+spec:
+  selector:
+    app: tls-app
+  ports:
+    - name: https
+      protocol: TCP
+      port: 443
+      targetPort: 8443
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: tls-app
+  labels:
+    app: tls-app
+spec:
+  selector:
+    matchLabels:
+      app: tls-app
+  template:
+    metadata:
+      labels:
+        app: tls-app
+    spec:
+      containers:
+        - image: public.ecr.aws/andreswebs/tls-app
+          name: tls-app
+          ports:
+            - containerPort: 8443
+          volumeMounts:
+            - mountPath: "/cert"
+              name: wildcard-tls
+              readOnly: true
+      volumes:
+        - name: wildcard-tls
+          secret:
+            secretName: wildcard-tls
