@@ -1,0 +1,13 @@
+---
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: wildcard
+spec:
+  secretName: wildcard-tls
+  issuerRef: 
+    kind: ClusterIssuer
+    name: letsencrypt
+  commonName: "*.example.com" ## <-- CHANGE THIS
+  dnsNames:
+    - "*.example.com" ## <-- CHANGE THIS
