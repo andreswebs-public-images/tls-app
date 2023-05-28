@@ -1,4 +1,4 @@
-FROM node:17-buster-slim
+FROM node:20-buster-slim
 
 COPY ./* ./
 
